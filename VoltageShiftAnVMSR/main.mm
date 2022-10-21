@@ -1165,8 +1165,8 @@ int setTurbo(int argc,bool enable){
     else
         turbodisabled = 0;
     
-    out.param ^= (-(turbodisabled?1:0>>38 &0x1) ^ out.param) & (1UL << 38);
-    
+    // out.param ^= (-(turbodisabled?1:0>>38 &0x1) ^ out.param) & (1UL << 38);
+    out.param = turbodisabled ? 0x4000850089 : 0x850089;
     
     in.action = AnVMSRActionMethodWRMSR;
     in.param = out.param;
